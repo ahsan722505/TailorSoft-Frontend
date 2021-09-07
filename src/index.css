@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* font-family: sans-serif; */
+  font-family: "Mukta", sans-serif;
+
+  /* color: #252525; */
+  background-color: rgb(190, 190, 190);
+}

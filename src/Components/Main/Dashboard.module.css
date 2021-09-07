@@ -1,0 +1,69 @@
+@import url("./Header.module.css");
+:root {
+  --dashWidth: 20vw;
+}
+.features li {
+  list-style: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+.features {
+  margin: 0;
+  padding: 1rem;
+  background-color: white;
+  height: calc(100vh - var(--headerHeight));
+  width: var(--dashWidth);
+  background-color: teal;
+  color: white;
+  /* transition: transform 1s; */
+  /* display: inline-block; */
+}
+.brand {
+  display: none;
+}
+@keyframes showDash {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  /* 80% {
+    opacity: 1;
+    transform: translateX(-20%);
+  } */
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes removeDash {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+    /* display: none; */
+    opacity: 0;
+  }
+}
+@media (max-width: 500px) {
+  .brand {
+    display: block;
+    font-weight: bolder;
+    font-size: 1.7rem;
+  }
+  .features {
+    width: 60vw;
+    height: 100vh;
+  }
+  .animate {
+    display: block;
+    position: absolute;
+    animation: showDash 0.5s;
+    z-index: 100;
+    /* transform: translateX(100%); */
+  }
+  .close {
+    animation: removeDash 1s;
+    display: none;
+  }
+}

@@ -1,0 +1,9 @@
+@import url("./Header.module.css");
+@import url("./Dashboard.module.css");
+.resultCont {
+  /* float: right; */
+  border: 2px solid red;
+  /* width: calc(98vw - var(--dashWidth));
+  height: calc(100vh - var(--headerHeight));
+  padding: 2rem; */
+}

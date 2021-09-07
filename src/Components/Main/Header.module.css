@@ -1,0 +1,40 @@
+:root {
+  --headerHeight: 9vh;
+}
+.header {
+  width: 100vw;
+  height: var(--headerHeight);
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.account {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+.account i {
+  margin-right: 0.5rem;
+}
+.company {
+  margin-left: 1rem;
+  font-size: larger;
+  font-weight: bold;
+}
+.hamCont {
+  display: none;
+}
+@media (max-width: 500px) {
+  .hamCont {
+    display: block;
+    margin-left: 1rem;
+    font-size: 2rem;
+  }
+  .company {
+    display: none;
+  }
+  .dashOn {
+    position: absolute;
+  }
+}
