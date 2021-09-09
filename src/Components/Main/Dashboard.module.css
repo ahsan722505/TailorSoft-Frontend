@@ -7,6 +7,7 @@
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
   border-radius: 1rem;
+  cursor: pointer;
 }
 .features {
   margin: 0;
@@ -21,6 +22,9 @@
 }
 .brand {
   display: none;
+}
+.selected {
+  background-color: red;
 }
 @keyframes showDash {
   0% {
@@ -63,7 +67,7 @@
     /* transform: translateX(100%); */
   }
   .close {
-    animation: removeDash 1s;
+    /* animation: removeDash 1s; */
     display: none;
   }
 }
