@@ -3,6 +3,30 @@
     grid-template-columns: auto auto auto;
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
+    /* border: 2px solid green; */
+    
+}
+.pageCont{
+    margin-top: 2rem;
+    width: 100%;
+    /* border: 2px solid purple; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pageCont *{
+    margin: 0 1.5rem;
+    padding: .6rem;
+    border-radius: .7rem;
+    width: 7rem;
+    border: none;
+    background-color: teal;
+    color: white;
+    cursor: pointer;
+}
+.disabled{
+    background-color: rgb(138, 156, 156);
+    cursor: not-allowed;
 }
 @media (max-width : 936px) {
     .pendCont{

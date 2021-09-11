@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.767);
   z-index: 50;
 }
-@media (min-width: 600px) {
+@media (min-width: 501px) {
   .backdrop {
     display: none;
   }
