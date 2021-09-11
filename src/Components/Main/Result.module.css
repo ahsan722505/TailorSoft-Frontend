@@ -3,8 +3,9 @@
 .resultCont {
   /* float: right; */
   border: 2px solid red;
-  height: 1000px;
+  /* height: 1000px; */
   width: calc(100vw - var(--dashWidth));
+  padding: 1rem;
   
   /* width: calc(98vw - var(--dashWidth));
   height: calc(100vh - var(--headerHeight));
