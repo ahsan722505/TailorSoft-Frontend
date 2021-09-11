@@ -17,6 +17,9 @@
   width: var(--dashWidth);
   background-color: teal;
   color: white;
+  position: fixed;
+  left: 0;
+  top: var(--headerHeight);
   /* transition: transform 1s; */
   /* display: inline-block; */
 }
@@ -61,7 +64,8 @@
   }
   .animate {
     display: block;
-    position: absolute;
+    /* position: absolute; */
+    top: 0;
     animation: showDash 0.5s;
     z-index: 100;
     /* transform: translateX(100%); */
