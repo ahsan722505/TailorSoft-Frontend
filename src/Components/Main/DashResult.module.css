@@ -1,3 +1,6 @@
+:root{
+  --backdropColor : rgba(0, 0, 0, 0.767)
+}
 .dashResCont {
   display: flex;
 }
@@ -7,7 +10,7 @@
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.767);
+  background-color: var(--backdropColor);
   z-index: 50;
 }
 @media (min-width: 501px) {

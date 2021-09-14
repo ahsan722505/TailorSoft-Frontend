@@ -1,0 +1,21 @@
+.newOrder{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    
+}
+.newOrder textarea,input{
+    margin-bottom: 1rem;
+    padding: .4rem 0;
+    border-radius: .8rem;
+    border: none;
+}
+.mb{
+    margin-bottom: 1rem;
+}
+@media (max-width : 500px) {
+    .newOrder{
+        width: 80%;
+    }
+}
