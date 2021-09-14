@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const Result = () => {
   const { showPendingOrders, showNewOrder, showSearchClients, showSettings } =
     useSelector((state) => state.ui);
-  console.log(showPendingOrders, showNewOrder, showSearchClients, showSettings);
+  // console.log(showPendingOrders, showNewOrder, showSearchClients, showSettings);
   return (
     <div className={styles.resultCont}>
       {showPendingOrders && <PendingOrders />}

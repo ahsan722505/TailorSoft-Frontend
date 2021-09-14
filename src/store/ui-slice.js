@@ -7,8 +7,7 @@ const uiSlice = createSlice({
     showNewOrder: false,
     showSearchClients: false,
     showSettings: false,
-    showPendDetails: false,
-    showPendUpdate : false
+    
   },
   reducers: {
     toggleDashHandler(state) {
@@ -38,12 +37,7 @@ const uiSlice = createSlice({
       state.showSearchClients = false;
       state.showSettings = true;
     },
-    togglePendDetailsHandler(state){
-      state.showPendDetails=!state.showPendDetails
-    },
-    togglePendUpdateHandler(state){
-      state.showPendUpdate=!state.showPendUpdate
-    }
+    
   },
 });
 export const uiActions = uiSlice.actions;

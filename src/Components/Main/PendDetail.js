@@ -1,21 +1,14 @@
-import styles from "./PendModal.module.css"
+import styles from "./PendDetail.module.css"
 import { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
-const PendModal=(props)=>{
-    const dispatch=useDispatch();
-    const togglePendHandler=()=>{
-        dispatch(uiActions.togglePendDetailsHandler());
-    }
+const PendDetail=(props)=>{
+    
+    
 return(
-    <Fragment>
+    
         
-        <div className={styles.modal}>
-
-                    <div className={styles.closeCont}>
-
-                <i class="fas fa-times-circle" onClick={togglePendHandler}></i>
-                    </div>
+            <div>        
                 <p>name : {props.order.client.name}</p>
                 <p>email : {props.order.client.email}</p>
                 <p>measurements:</p>
@@ -29,13 +22,8 @@ return(
                 <div>
                     {props.order.cloth}
                 </div>
-        </div>
-                
-    
-        <div className={styles.backdrop} onClick={togglePendHandler}>
-
-        </div>
-    </Fragment>
+                </div>
+        
 )
 }
-export default PendModal;
+export default PendDetail;
