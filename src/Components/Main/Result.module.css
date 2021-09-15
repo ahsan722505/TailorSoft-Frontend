@@ -2,7 +2,7 @@
 @import url("./Dashboard.module.css");
 .resultCont {
   /* float: right; */
-  border: 2px solid red;
+  /* border: 2px solid red; */
   /* height: 1000px; */
   width: calc(100vw - var(--dashWidth));
   padding: 1rem;

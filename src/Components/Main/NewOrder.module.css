@@ -14,8 +14,34 @@
 .mb{
     margin-bottom: 1rem;
 }
+.btnCont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+.btnCont button{
+    padding: .6rem 1.8rem;
+    border-radius: .8rem;
+    border: none;
+    cursor: pointer;
+}
+.loadCont{
+    display: flex;
+     width: calc(100vw - var(--dashWidth));
+    /* height: 100%; */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    position: fixed;
+    top: 50%;
+    /* border: 2px solid red; */
+}
 @media (max-width : 500px) {
     .newOrder{
         width: 80%;
+    }
+    .loadCont{
+        width: 100%;
     }
 }
