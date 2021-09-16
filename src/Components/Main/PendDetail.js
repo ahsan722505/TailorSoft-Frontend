@@ -9,11 +9,11 @@ return(
     
         
             <div>        
-                <p>name : {props.order.client.name}</p>
-                <p>email : {props.order.client.email}</p>
+                <p>name : {props.order.clientId.name}</p>
+                <p>email : {props.order.clientId.email}</p>
                 <p>measurements:</p>
                 <div>
-                    {props.order.client.measurements}
+                    {props.order.clientId.measurements}
                 </div>
                 <p>created At: {props.order.createdAt}</p>
                 <p>return Date: {props.order.returnDate}</p>

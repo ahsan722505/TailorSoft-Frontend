@@ -30,7 +30,7 @@ const PendingOrder=(props)=>{
     return(
         <Fragment>
         <div className={styles.orderCont}>
-                <p>Name : {props.order.client.name}</p>
+                <p>Name : {props.order.clientId.name}</p>
                 <p>createdAt : {props.order.createdAt}</p>
                 <p>returnDate : {props.order.returnDate}</p>
                 <button onClick={toggleDetailHandler}>Details</button>

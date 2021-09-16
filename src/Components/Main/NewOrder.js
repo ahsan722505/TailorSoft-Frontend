@@ -77,11 +77,11 @@ const NewOrder = (props) => {
     {error && <h1 style={{color : "red",fontSize : "1.5rem"}}>{error}</h1>}
     
     <label htmlFor="name">Name:</label>
-    <input id="name" type="text" value={updateMode ? props.order.client.name : name} onChange={(e)=> setName(e.target.value)}/>
+    <input id="name" type="text" value={updateMode ? props.order.clientId.name : name} onChange={(e)=> setName(e.target.value)}/>
     <label htmlFor="email">Email:</label>
-    <input id="email" type="email"  value={updateMode ? props.order.client.email : email} onChange={(e)=> setEmail(e.target.value)}/>
+    <input id="email" type="email"  value={updateMode ? props.order.clientId.email : email} onChange={(e)=> setEmail(e.target.value)}/>
     <label htmlFor="measurements">Measurements:</label>
-    <textarea id="measurements"rows="10" cols="50" value={updateMode ? props.order.client.measurements : measurements} onChange={(e)=> setMeasurements(e.target.value)}></textarea>
+    <textarea id="measurements"rows="10" cols="50" value={updateMode ? props.order.clientId.measurements : measurements} onChange={(e)=> setMeasurements(e.target.value)}></textarea>
     <TextField
     id="date"
     label="Return Date"
