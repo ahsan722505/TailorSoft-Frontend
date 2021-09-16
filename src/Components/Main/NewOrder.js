@@ -3,11 +3,16 @@ import TextField from '@material-ui/core/TextField';
 import { useState } from "react";
 import { Fragment } from "react";
 import Loader from "../Helpers/Loader";
+import ErrorComponent from "../Helpers/ErrorComponent";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
+import Confirmation from "../Helpers/Confirmation";
 
 
 
 // require("dotenv").config();
 const NewOrder = (props) => {
+  const dispatch=useDispatch();
 
   const [error,setError]=useState(false);
   const [name,setName]=useState("");
@@ -18,10 +23,12 @@ const NewOrder = (props) => {
   const [cloth,setCloth]=useState("");
   const [showLoading,setLoading]=useState(false);
   const [showForm,setForm]=useState(true);
+  const [showConfirmation,setConfirmation]=useState(false);
   
   const updateMode= props.order ? true : false; 
   
   const addOrderHandler=(event)=>{
+    
     event.preventDefault();
     // console.log(name,email,measurements,price,date,cloth)
     const data=[name,measurements,price,date,cloth];
@@ -47,8 +54,8 @@ const NewOrder = (props) => {
               returnDate : date,
               cloth : cloth
             })}).then((res)=>{
-              setLoading(false);
-              setForm(true);
+              // setLoading(false);
+              // setForm(true);
               console.log(res);
                 if(res.status === 500 || !res.ok){
                     console.log("it is bad")
@@ -56,9 +63,22 @@ const NewOrder = (props) => {
                 }
                 return res.json()
             }).then((data)=>{
+              // dispatch(uiActions.showPendingOrdersHandler())
+              setLoading(false)
+              setForm(true);
+              setName("")
+              setPrice("")
+              setDate("2017-05-24")
+              setEmail("")
+              setMeasurements("")
+              setCloth("")
+              setConfirmation(true)
               console.log(data)
+
             }).catch((err)=>{
-              
+              err.message="There was an error please try again."
+              setLoading(false)
+              setForm(true);
               setError(err.message)
             })
     
@@ -68,13 +88,17 @@ const NewOrder = (props) => {
     
 
   }
+  const closeConfirmation=()=>{
+    setConfirmation(false);
+  }
   return(
     <Fragment>
       {showLoading && <Loader/>}
+      {showConfirmation && <Confirmation message="The order was added" closeHandler={closeConfirmation} />}
 
     
+    {error && <ErrorComponent message={error}/>}
      {showForm && <form className={styles.newOrder} onSubmit={addOrderHandler}>
-    {error && <h1 style={{color : "red",fontSize : "1.5rem"}}>{error}</h1>}
     
     <label htmlFor="name">Name:</label>
     <input id="name" type="text" value={updateMode ? props.order.clientId.name : name} onChange={(e)=> setName(e.target.value)}/>

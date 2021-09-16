@@ -5,7 +5,7 @@ const AhsanModal=(props)=>{
     return(
         <Fragment>
             
-            <div className={styles.modal}>
+            <div className={styles.modal} >
 
                     <div className={styles.closeCont}>
 

@@ -3,18 +3,20 @@ import PendingOrder from "./PendingOrder";
 import { Fragment, useEffect } from "react";
 import { useState } from "react";
 import Loader from "../Helpers/Loader";
-// const orders=[{ id : "dtug",createdAt : new Date().toISOString().split('T')[0], returnDate :new Date().toISOString().split('T')[0],price : 89, cloth : "This is kurta",client :{ name : "ahsan", email : "ahsan222@gmail.com",measurements : "jdhuwdiuwbu iw"}},{id :"dlrfx",createdAt : new Date().toISOString().split('T')[0], returnDate :new Date().toISOString().split('T')[0],price : 189, cloth : "This is coat",client :{ name : "jav", email : "jav222@gmail.com",measurements : "jdhuwdiuwbu iw"}},{id :"sisgvs",createdAt : new Date().toISOString().split('T')[0], returnDate :new Date().toISOString().split('T')[0],price : 189, cloth : "This is coat",client :{ name : "lal", email : "lal222@gmail.com",measurements : "wowww"}},]
+import ErrorComponent from "../Helpers/ErrorComponent";
+import { useSelector,useDispatch } from "react-redux";
 const PendingOrders=()=>{
     const [showOrders,setShowOrders]= useState(false)
     const [showLoader,setLoader]= useState(true)
     const [error,setError]=useState(null)
     const [orders,setOrders]=useState([]);
+    const sendRequest=useSelector(state=>state.ui.sendRequest)
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_HOST}/api/getPendOrders`).then((res)=>{
-            setShowOrders(true);
-            setLoader(false)
+            
+            
             if(res.status === 500 || !res.ok){
-                throw new Error("Something went wrong, Try again!")
+                throw new Error("There was an error please try again.")
             }
             return res.json()
         }).then((data)=>{
@@ -22,9 +24,12 @@ const PendingOrders=()=>{
                 order.returnDate=order.returnDate.split('T')[0]
                 order.createdAt=order.createdAt.split('T')[0]
             })
+            setShowOrders(true);
+            setLoader(false)
             setOrders(data.orders)
             
         }).catch(err=>{
+            if(err.message === "Failed to fetch") err.message="There was an error please try again."
             setLoader(false)
             setError(err.message)
         })
@@ -50,7 +55,7 @@ const PendingOrders=()=>{
 
     return(
             <Fragment> 
-                {error && <h1 style={{color : "red",fontSize : "1.5rem" , width : "10%", margin : "0 auto"}}>{error}</h1>}
+                {error && <ErrorComponent message={error}/>}
             {showLoader && <Loader/>}
             {orders.length===0 && !showLoader && !error && showOrders && <h1 style={{color : "teal",fontSize : "1.5rem" , width : "30%", margin : "0 auto"}}>You have no pending orders</h1>}
             {showOrders && orders.length !== 0 &&  !error &&<Fragment>

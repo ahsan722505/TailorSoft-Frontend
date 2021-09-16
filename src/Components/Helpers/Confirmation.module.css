@@ -1,0 +1,21 @@
+.message{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+}
+.btnCont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+.btnCont button{
+    padding: .4rem 1.8rem;
+    font-size: 1.3rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+}
