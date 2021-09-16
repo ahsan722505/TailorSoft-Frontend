@@ -7,6 +7,7 @@ import ErrorComponent from "../Helpers/ErrorComponent";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 import Confirmation from "../Helpers/Confirmation";
+import { ordersActions } from "../../store/orders-slice";
 
 
 
@@ -63,7 +64,10 @@ const NewOrder = (props) => {
                 }
                 return res.json()
             }).then((data)=>{
-              // dispatch(uiActions.showPendingOrdersHandler())
+              console.log(data);
+              data.clientData.returnDate=data.clientData.returnDate.split('T')[0]
+              data.clientData.createdAt=data.clientData.createdAt.split('T')[0]
+              dispatch(ordersActions.addOrder(data.clientData))
               setLoading(false)
               setForm(true);
               setName("")
@@ -73,7 +77,7 @@ const NewOrder = (props) => {
               setMeasurements("")
               setCloth("")
               setConfirmation(true)
-              console.log(data)
+              
 
             }).catch((err)=>{
               err.message="There was an error please try again."

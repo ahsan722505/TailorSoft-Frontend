@@ -5,13 +5,31 @@ import { useState } from "react";
 import Loader from "../Helpers/Loader";
 import ErrorComponent from "../Helpers/ErrorComponent";
 import { useSelector,useDispatch } from "react-redux";
+import { ordersActions } from "../../store/orders-slice";
+import { uiActions } from "../../store/ui-slice";
 const PendingOrders=()=>{
-    const [showOrders,setShowOrders]= useState(false)
-    const [showLoader,setLoader]= useState(true)
+    const firstRender=useSelector(state=>state.ui.firstRender)
+    const [showOrders,setShowOrders]= useState(firstRender ? false : true)
+    const [showLoader,setLoader]= useState( firstRender ? true : false)
     const [error,setError]=useState(null)
     const [orders,setOrders]=useState([]);
-    const sendRequest=useSelector(state=>state.ui.sendRequest)
+    const dispatch=useDispatch()
+    let redOrders=useSelector(state=>state.porders.orders)
+    
+    
+        
+    
+
+    
+        
+    
     useEffect(()=>{
+        if(firstRender){
+            dispatch(uiActions.toggleFirstRender())
+            
+        
+
+        
         fetch(`${process.env.REACT_APP_HOST}/api/getPendOrders`).then((res)=>{
             
             
@@ -26,6 +44,7 @@ const PendingOrders=()=>{
             })
             setShowOrders(true);
             setLoader(false)
+            dispatch(ordersActions.addOrders(data.orders))
             setOrders(data.orders)
             
         }).catch(err=>{
@@ -33,7 +52,11 @@ const PendingOrders=()=>{
             setLoader(false)
             setError(err.message)
         })
+    }else{
+        setOrders(redOrders)
+    }
     },[])
+
         const ordersPerPage=6;
      const [page,setPage]=useState(1);
      

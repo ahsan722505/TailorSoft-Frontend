@@ -7,6 +7,7 @@ const uiSlice = createSlice({
     showNewOrder: false,
     showSearchClients: false,
     showSettings: false,
+    firstRender : true
     
   },
   reducers: {
@@ -37,6 +38,9 @@ const uiSlice = createSlice({
       state.showSearchClients = false;
       state.showSettings = true;
     },
+    toggleFirstRender(state){
+      state.firstRender=!state.firstRender
+    }
     
   },
 });
