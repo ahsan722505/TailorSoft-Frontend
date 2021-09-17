@@ -13,20 +13,21 @@ import { ordersActions } from "../../store/orders-slice";
 
 // require("dotenv").config();
 const NewOrder = (props) => {
+  const updateMode= props.order ? true : false; 
   const dispatch=useDispatch();
 
   const [error,setError]=useState(false);
-  const [name,setName]=useState("");
-  const [email,setEmail]=useState("");
-  const [measurements,setMeasurements]=useState("");
-  const [date,setDate]=useState("2017-05-24");
-  const [price,setPrice]=useState("");
-  const [cloth,setCloth]=useState("");
+  const [name,setName]=useState( updateMode ? props.order.clientId.name : "");
+  const [email,setEmail]=useState( updateMode ? props.order.clientId.email :"");
+  const [measurements,setMeasurements]=useState( updateMode ? props.order.clientId.measurements :"");
+  const [date,setDate]=useState( updateMode ? props.order.returnDate : "2017-05-24");
+  const [price,setPrice]=useState(updateMode ? props.order.price : "");
+  const [cloth,setCloth]=useState(updateMode ? props.order.cloth : "");
   const [showLoading,setLoading]=useState(false);
   const [showForm,setForm]=useState(true);
   const [showConfirmation,setConfirmation]=useState(false);
+  const [showUpdateSuccess,setUpdateSuccess]=useState(false);
   
-  const updateMode= props.order ? true : false; 
   
   const addOrderHandler=(event)=>{
     
@@ -44,8 +45,20 @@ const NewOrder = (props) => {
     if(e) return;
     setLoading(true);
     setForm(false);
-    fetch(`${process.env.REACT_APP_HOST}/api/postOrder`,{
-            method: "POST",
+    let endPoint;
+    if(updateMode){
+      endPoint=`${process.env.REACT_APP_HOST}/api/updateOrder`
+    }else{
+      endPoint=`${process.env.REACT_APP_HOST}/api/postOrder`
+    }
+    let method;
+    if(updateMode){
+      method="PUT"
+    }else{
+      method="POST"
+    }
+    fetch(endPoint,{
+            method: method,
             headers: { "Content-type": "application/json" },
             body : JSON.stringify({
               name : name,
@@ -53,13 +66,12 @@ const NewOrder = (props) => {
               measurements : measurements,
               price : price,
               returnDate : date,
-              cloth : cloth
+              cloth : cloth,
+              clientId : updateMode ? props.order.clientId._id : null,
+              orderId : updateMode ? props.order._id : null
             })}).then((res)=>{
-              // setLoading(false);
-              // setForm(true);
-              console.log(res);
                 if(res.status === 500 || !res.ok){
-                    console.log("it is bad")
+                    
                     throw new Error("There was an error please try again.")
                 }
                 return res.json()
@@ -67,16 +79,22 @@ const NewOrder = (props) => {
               console.log(data);
               data.clientData.returnDate=data.clientData.returnDate.split('T')[0]
               data.clientData.createdAt=data.clientData.createdAt.split('T')[0]
-              dispatch(ordersActions.addOrder(data.clientData))
               setLoading(false)
               setForm(true);
-              setName("")
-              setPrice("")
-              setDate("2017-05-24")
-              setEmail("")
-              setMeasurements("")
-              setCloth("")
-              setConfirmation(true)
+              if(updateMode){
+                setUpdateSuccess(true);
+                  dispatch(ordersActions.replaceOrder(data.clientData))
+              }else{
+                dispatch(ordersActions.addOrder(data.clientData))
+                setName("")
+                setPrice("")
+                setDate("2017-05-24")
+                setEmail("")
+                setMeasurements("")
+                setCloth("")
+                setConfirmation(true)
+                
+              }
               
 
             }).catch((err)=>{
@@ -97,6 +115,7 @@ const NewOrder = (props) => {
   }
   return(
     <Fragment>
+      {showUpdateSuccess && <h1>Order was updated successfully.</h1>}
       {showLoading && <Loader/>}
       {showConfirmation && <Confirmation message="The order was added" closeHandler={closeConfirmation} />}
 
@@ -105,16 +124,16 @@ const NewOrder = (props) => {
      {showForm && <form className={styles.newOrder} onSubmit={addOrderHandler}>
     
     <label htmlFor="name">Name:</label>
-    <input id="name" type="text" value={updateMode ? props.order.clientId.name : name} onChange={(e)=> setName(e.target.value)}/>
+    <input id="name" type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
     <label htmlFor="email">Email:</label>
-    <input id="email" type="email"  value={updateMode ? props.order.clientId.email : email} onChange={(e)=> setEmail(e.target.value)}/>
+    <input id="email" type="email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
     <label htmlFor="measurements">Measurements:</label>
-    <textarea id="measurements"rows="10" cols="50" value={updateMode ? props.order.clientId.measurements : measurements} onChange={(e)=> setMeasurements(e.target.value)}></textarea>
+    <textarea id="measurements"rows="10" cols="50" value={measurements} onChange={(e)=> setMeasurements(e.target.value)}></textarea>
     <TextField
     id="date"
     label="Return Date"
     type="date"
-    defaultValue={updateMode ?  props.order.returnDate : date}
+    defaultValue={date}
     className={styles.mb}
     onChange={(e)=> setDate(e.target.value)}
     
@@ -123,9 +142,9 @@ const NewOrder = (props) => {
     }}
   />
   <label htmlFor="price">Price:</label>
-  <input type="text" id="price" value={updateMode ? props.order.price : price} onChange={(e)=> setPrice(e.target.value)}/>
+  <input type="text" id="price" value={price} onChange={(e)=> setPrice(e.target.value)}/>
   <label htmlFor="cloth">Stitch Details:</label>
-  <textarea id="cloth" rows="10" cols="50" value={updateMode ? props.order.cloth : cloth} onChange={(e)=> setCloth(e.target.value)}></textarea>
+  <textarea id="cloth" rows="10" cols="50" value={cloth} onChange={(e)=> setCloth(e.target.value)}></textarea>
   <div className={styles.btnCont}><button type="submit">{updateMode ? "Update" : "Add"}</button></div>
   </form>}
   </Fragment>

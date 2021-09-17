@@ -11,6 +11,9 @@ const ordersSlice=createSlice({
         },
         addOrder(state,action){
             state.orders.push(action.payload)
+        },replaceOrder(state,action){
+            const index=state.orders.findIndex(order=>order._id === action.payload._id);
+            state.orders[index]=action.payload;
         }
     }
 })

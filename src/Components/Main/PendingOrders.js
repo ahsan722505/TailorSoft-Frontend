@@ -8,6 +8,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { ordersActions } from "../../store/orders-slice";
 import { uiActions } from "../../store/ui-slice";
 const PendingOrders=()=>{
+    console.log("rendering pending orders")
     const firstRender=useSelector(state=>state.ui.firstRender)
     const [showOrders,setShowOrders]= useState(firstRender ? false : true)
     const [showLoader,setLoader]= useState( firstRender ? true : false)
@@ -15,6 +16,7 @@ const PendingOrders=()=>{
     const [orders,setOrders]=useState([]);
     const dispatch=useDispatch()
     let redOrders=useSelector(state=>state.porders.orders)
+    // console.log(redOrders)
     
     
         
@@ -55,7 +57,7 @@ const PendingOrders=()=>{
     }else{
         setOrders(redOrders)
     }
-    },[])
+    },[redOrders])
 
         const ordersPerPage=6;
      const [page,setPage]=useState(1);
@@ -75,6 +77,7 @@ const PendingOrders=()=>{
     const endingIndex=ordersPerPage*page;
     const startingIndex=endingIndex-ordersPerPage;
     const pendOrders=orders.slice(startingIndex,endingIndex)
+    console.log(pendOrders)
 
     return(
             <Fragment> 
