@@ -7,6 +7,7 @@
     /* border: 2px solid red; */
 }
 .errorCont *{
-    color: red;
+    /* color: red; */
     font-size: 1.5rem;
+    text-align: center;
 }

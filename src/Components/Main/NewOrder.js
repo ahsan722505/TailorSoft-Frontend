@@ -3,11 +3,12 @@ import TextField from '@material-ui/core/TextField';
 import { useState } from "react";
 import { Fragment } from "react";
 import Loader from "../Helpers/Loader";
-import ErrorComponent from "../Helpers/ErrorComponent";
+
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 import Confirmation from "../Helpers/Confirmation";
 import { ordersActions } from "../../store/orders-slice";
+import Message from "../Helpers/Message";
 
 
 
@@ -153,9 +154,10 @@ const priceChangeHandler=(e)=>{
       
 
     
-    {error && <ErrorComponent message={error}/>}
+      {showUpdateSuccess && <Message message="Order was updated successfully." style={{color : "black"}}/>}
+    {error && <Message message={error} style={{color : "red"}}/>}
      {showForm && <form className={styles.newOrder} onSubmit={addOrderHandler}>
-      {showUpdateSuccess && <h1 style={{fontSize : "1.5rem" , textAlign : "center"}} >Order was updated successfully.</h1>}
+      {/* {showUpdateSuccess && <h1 style={{fontSize : "1.5rem" , textAlign : "center"}} >Order was updated successfully.</h1>} */}
     
     <label htmlFor="name">Name:</label>
     <input id="name" type="text" value={name} onChange={nameChangeHandler}/>
