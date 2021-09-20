@@ -8,6 +8,10 @@ const uiSlice = createSlice({
     showSearchClients: false,
     showSettings: false,
     firstRender : true,
+    meta : {
+      show : false,
+      message : "",
+    }
     
     
   },
@@ -41,6 +45,10 @@ const uiSlice = createSlice({
     },
     toggleFirstRender(state){
       state.firstRender=!state.firstRender
+    },
+    toggleMeta(state,action){
+      state.meta.show=!state.meta.show;
+      state.meta.message=action.payload;
     }
     
   },

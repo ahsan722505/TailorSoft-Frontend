@@ -45,7 +45,8 @@ const PendingOrder=(props)=>{
             if(res.status === 500 || !res.ok) throw new Error("There was an error");
             
             
-            props.toggleSuccess()
+            // props.toggleSuccess()
+            dispatch(uiActions.toggleMeta("The order was deleted."));
             dispatch(ordersActions.deleteOrder(props.order._id))
             
         }).catch(err=>{
@@ -53,7 +54,8 @@ const PendingOrder=(props)=>{
             
 
             
-            props.toggleFailure();
+            // props.toggleFailure();
+            dispatch(uiActions.toggleMeta("There was an error please try  again."));
         })
     }
     

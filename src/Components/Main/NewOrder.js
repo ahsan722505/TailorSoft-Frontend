@@ -25,11 +25,13 @@ const NewOrder = (props) => {
   const [cloth,setCloth]=useState(updateMode ? props.order.cloth : "");
   const [showLoading,setLoading]=useState(false);
   const [showForm,setForm]=useState(true);
-  const [showConfirmation,setConfirmation]=useState(false);
+  
   const [showUpdateSuccess,setUpdateSuccess]=useState(false);
   
   
   const addOrderHandler=(event)=>{
+    setError(false)
+    setUpdateSuccess(false)
     
     event.preventDefault();
     // console.log(name,email,measurements,price,date,cloth)
@@ -86,16 +88,18 @@ const NewOrder = (props) => {
               setForm(true);
               if(updateMode){
                 setUpdateSuccess(true);
+                  // dispatch(uiActions.toggleMeta("Order was updated successfully."));
                   dispatch(ordersActions.replaceOrder(data.clientData))
               }else{
                 dispatch(ordersActions.addOrder(data.clientData))
+                dispatch(uiActions.toggleMeta("The order was added"))
                 setName("")
                 setPrice("")
                 setDate("2017-05-24")
                 setEmail("")
                 setMeasurements("")
                 setCloth("")
-                setConfirmation(true)
+                // setConfirmation(true)
                 
               }
               
@@ -113,41 +117,68 @@ const NewOrder = (props) => {
     
 
   }
-  const closeConfirmation=()=>{
-    setConfirmation(false);
+  const nameChangeHandler=(e)=>{
+      setName(e.target.value);
+      if(showUpdateSuccess) setUpdateSuccess(false);
+      if(error) setError(false);
   }
+  const emailChangeHandler=(e)=>{
+    setEmail(e.target.value);
+    if(showUpdateSuccess) setUpdateSuccess(false);
+    if(error) setError(false);
+}
+const measurementsChangeHandler=(e)=>{
+  setMeasurements(e.target.value);
+  if(showUpdateSuccess) setUpdateSuccess(false);
+  if(error) setError(false);
+}
+const dateChangeHandler=(e)=>{
+  setDate(e.target.value);
+  if(showUpdateSuccess) setUpdateSuccess(false);
+  if(error) setError(false);
+}
+const clothChangeHandler=(e)=>{
+  setCloth(e.target.value);
+  if(showUpdateSuccess) setUpdateSuccess(false);
+  if(error) setError(false);
+}
+const priceChangeHandler=(e)=>{
+  setPrice(e.target.value);
+  if(showUpdateSuccess) setUpdateSuccess(false);
+  if(error) setError(false);
+}
   return(
     <Fragment>
-      {showUpdateSuccess && <h1>Order was updated successfully.</h1>}
       {showLoading && <Loader/>}
-      {showConfirmation && <Confirmation message="The order was added" closeHandler={closeConfirmation} />}
+      
 
     
     {error && <ErrorComponent message={error}/>}
      {showForm && <form className={styles.newOrder} onSubmit={addOrderHandler}>
+      {showUpdateSuccess && <h1 style={{fontSize : "1.5rem" , textAlign : "center"}} >Order was updated successfully.</h1>}
     
     <label htmlFor="name">Name:</label>
-    <input id="name" type="text" value={name} onChange={(e)=> {setName(e.target.value); setUpdateSuccess(false)}}/>
+    <input id="name" type="text" value={name} onChange={nameChangeHandler}/>
     <label htmlFor="email">Email:</label>
-    <input id="email" type="email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
+    <input id="email" type="email"  value={email} onChange={emailChangeHandler}/>
     <label htmlFor="measurements">Measurements:</label>
-    <textarea id="measurements"rows="10" cols="50" value={measurements} onChange={(e)=> setMeasurements(e.target.value)}></textarea>
+    <textarea id="measurements"rows="10" cols="50" value={measurements} onChange={measurementsChangeHandler}></textarea>
     <TextField
     id="date"
     label="Return Date"
     type="date"
     defaultValue={date}
     className={styles.mb}
-    onChange={(e)=> setDate(e.target.value)}
+    onChange={dateChangeHandler}
     
     InputLabelProps={{
       shrink: true,
     }}
   />
   <label htmlFor="price">Price:</label>
-  <input type="text" id="price" value={price} onChange={(e)=> setPrice(e.target.value)}/>
+  <input type="text" id="price" value={price} onChange={priceChangeHandler}/>
   <label htmlFor="cloth">Stitch Details:</label>
-  <textarea id="cloth" rows="10" cols="50" value={cloth} onChange={(e)=> setCloth(e.target.value)}></textarea>
+  <textarea id="cloth" rows="10" cols="50" value={cloth} onChange={clothChangeHandler}></textarea>
   <div className={styles.btnCont}><button type="submit">{updateMode ? "Update" : "Add"}</button></div>
   </form>}
   </Fragment>
