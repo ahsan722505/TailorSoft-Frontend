@@ -7,6 +7,7 @@ import ErrorComponent from "../Helpers/ErrorComponent";
 import { useSelector,useDispatch } from "react-redux";
 import { ordersActions } from "../../store/orders-slice";
 import { uiActions } from "../../store/ui-slice";
+import Confirmation from "../Helpers/Confirmation";
 const PendingOrders=()=>{
     console.log("rendering pending orders")
     const firstRender=useSelector(state=>state.ui.firstRender)
@@ -14,6 +15,8 @@ const PendingOrders=()=>{
     const [showLoader,setLoader]= useState( firstRender ? true : false)
     const [error,setError]=useState(null)
     const [orders,setOrders]=useState([]);
+    const [showSuccess,setSuccess]= useState(false);
+    const [showFailure,setFailure]=useState(false);
     const dispatch=useDispatch()
     let redOrders=useSelector(state=>state.porders.orders)
     // console.log(redOrders)
@@ -78,6 +81,15 @@ const PendingOrders=()=>{
     const startingIndex=endingIndex-ordersPerPage;
     const pendOrders=orders.slice(startingIndex,endingIndex)
     console.log(pendOrders)
+    const toggleLoaderHandler=()=>{
+        setLoader(state=> !state);
+    }
+    const toggleSuccess=()=>{
+        setSuccess(state=>!state)
+    }
+    const toggleFailure=()=>{
+        setFailure(state=>!state)
+    }
 
     return(
             <Fragment> 
@@ -89,7 +101,7 @@ const PendingOrders=()=>{
             
          <div className={styles.pendCont}>
             {pendOrders.map(eachOrder=>{
-                return <PendingOrder key={eachOrder._id} order={eachOrder}/>
+                return <PendingOrder key={eachOrder._id} order={eachOrder} toggleLoader={toggleLoaderHandler} toggleSuccess={toggleSuccess} toggleFailure={toggleFailure}/>
             })}
             
         </div>
@@ -98,6 +110,8 @@ const PendingOrders=()=>{
                 <button className={page*ordersPerPage >= orders.length ? styles.disabled : ""} onClick={nextPageHandler}>Next Page</button>
             </div>
             </Fragment>}
+            {showSuccess && <Confirmation warning={false} closeHandler={toggleSuccess} message="The order was deleted"/>}
+            {showFailure && <Confirmation warning={false} closeHandler={toggleFailure} message="There was an error please try again!"/>}
             </Fragment>
 
         

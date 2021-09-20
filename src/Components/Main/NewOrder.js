@@ -44,7 +44,10 @@ const NewOrder = (props) => {
     })
     if(e) return;
     setLoading(true);
-    setForm(false);
+    if(!updateMode){
+      setForm(false);
+
+    }
     let endPoint;
     if(updateMode){
       endPoint=`${process.env.REACT_APP_HOST}/api/updateOrder`
@@ -124,7 +127,7 @@ const NewOrder = (props) => {
      {showForm && <form className={styles.newOrder} onSubmit={addOrderHandler}>
     
     <label htmlFor="name">Name:</label>
-    <input id="name" type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
+    <input id="name" type="text" value={name} onChange={(e)=> {setName(e.target.value); setUpdateSuccess(false)}}/>
     <label htmlFor="email">Email:</label>
     <input id="email" type="email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
     <label htmlFor="measurements">Measurements:</label>

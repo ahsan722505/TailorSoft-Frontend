@@ -7,7 +7,8 @@ const uiSlice = createSlice({
     showNewOrder: false,
     showSearchClients: false,
     showSettings: false,
-    firstRender : true
+    firstRender : true,
+    
     
   },
   reducers: {

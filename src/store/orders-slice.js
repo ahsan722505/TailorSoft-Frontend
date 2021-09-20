@@ -14,6 +14,10 @@ const ordersSlice=createSlice({
         },replaceOrder(state,action){
             const index=state.orders.findIndex(order=>order._id === action.payload._id);
             state.orders[index]=action.payload;
+        },
+        deleteOrder(state,action){
+            console.log(action.payload);
+            state.orders=state.orders.filter(order=> order._id !== action.payload)
         }
     }
 })
