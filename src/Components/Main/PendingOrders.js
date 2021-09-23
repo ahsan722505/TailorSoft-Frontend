@@ -7,6 +7,7 @@ import ErrorComponent from "../Helpers/Message";
 import { useSelector,useDispatch } from "react-redux";
 import { ordersActions } from "../../store/orders-slice";
 import { uiActions } from "../../store/ui-slice";
+import Message from "../Helpers/Message";
 import Confirmation from "../Helpers/Confirmation";
 const PendingOrders=()=>{
     console.log("rendering pending orders")
@@ -89,7 +90,7 @@ const PendingOrders=()=>{
             <Fragment> 
                 {error && <ErrorComponent message={error}/>}
             {showLoader && <Loader/>}
-            {orders.length===0 && !showLoader && !error && showOrders && <h1 style={{color : "teal",fontSize : "1.5rem" , width : "30%", margin : "0 auto"}}>You have no pending orders</h1>}
+            {orders.length===0 && !showLoader && !error && showOrders && <Message message="You have no pending orders" style={{color : "teal"}}/>}
             {showOrders && orders.length !== 0 &&  !error &&<Fragment>
 
             

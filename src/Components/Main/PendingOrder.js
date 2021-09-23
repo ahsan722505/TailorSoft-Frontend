@@ -8,11 +8,12 @@ import AhsanModal from "../Helpers/AhsanModal";
 import NewOrder from "./NewOrder";
 import Confirmation from "../Helpers/Confirmation";
 import { ordersActions } from "../../store/orders-slice";
+// import { set } from "@reduxjs/toolkit/node_modules/immer/dist/internal";
 
 const PendingOrder=(props)=>{
     const [showDetails,setDetails]=useState(false);
     const [showUpdate,setUpdate]=useState(false);
-    const [showWarning,setWarning]=useState(false);
+    const [warning,setWarning]=useState({showWarning : false, message : null , proceedHandler : null});
     
     const dispatch=useDispatch();
     
@@ -24,15 +25,27 @@ const PendingOrder=(props)=>{
         setUpdate(state=>!state)
         
     }
-    const toggleWarning=()=>{
-        setWarning(state=>!state)
+    const toggleWarning=(e)=>{
+        // console.log(e.target.value)
+        if(e.target.value === "delete"){
+            setWarning(state=> { return {showWarning : !state.showWarning , message : "Are You sure you want to delete this order?", proceedHandler : deleteHandler}} )
+            
+        }else if(e.target.value === "complete"){
+            setWarning(state=>{return {showWarning : !state.showWarning , message : "Are You sure you want to complete this order?", proceedHandler : completeHandler}})
+        }else{
+            setWarning(state=>{ return {showWarning : !state.showWarning , message : null, proceedHandler : null}})
+        }
+    }
+    const  completeHandler=()=>{
+            console.log("completing..");
     }
     
     const deleteHandler=()=>{
         
         
         
-        setWarning(false);
+        
+        setWarning(state=>{ return {showWarning : !state.showWarning , message : null, proceedHandler : null}})
         props.toggleLoader();
         let clientError=true;
         fetch(`${process.env.REACT_APP_HOST}/api/deleteOrder`,{
@@ -68,14 +81,15 @@ const PendingOrder=(props)=>{
                 <p>createdAt : {props.order.createdAt}</p>
                 <p>returnDate : {props.order.returnDate}</p>
                 <button onClick={toggleDetailHandler}>Details</button>
-                <button onClick={toggleWarning}>Delete</button>
-                <button onClick={toggleUpdateHandler}>Update</button>
+                <button value="delete" onClick={toggleWarning}>Delete</button>
+                <button  onClick={toggleUpdateHandler}>Update</button>
+                <button value="complete" onClick={toggleWarning}>Complete</button>
         </div>
         {showDetails && <AhsanModal closeHandler={toggleDetailHandler}>{details}</AhsanModal>}
         {showUpdate && <AhsanModal closeHandler={toggleUpdateHandler}>
             {update}
             </AhsanModal>}
-            {showWarning && <Confirmation warning={true} closeHandler={toggleWarning} proceedHandler={deleteHandler} message="Are You sure you want to delete this order?"/>}
+            {warning.showWarning && <Confirmation warning={true} closeHandler={toggleWarning} proceedHandler={warning.proceedHandler} message={warning.message}/>}
             
         
 
