@@ -1,0 +1,16 @@
+.client{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .7rem;
+    margin: 0 0;
+    border-radius: .8rem;
+    cursor: pointer;
+    /* border: 2px solid red; */
+}
+.client button{
+    cursor: pointer;
+}
+.client:hover{
+    background-color: rgb(190, 190, 190) ;
+}

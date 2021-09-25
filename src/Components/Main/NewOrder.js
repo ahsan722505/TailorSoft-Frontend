@@ -9,6 +9,7 @@ import { uiActions } from "../../store/ui-slice";
 import Confirmation from "../Helpers/Confirmation";
 import { ordersActions } from "../../store/orders-slice";
 import Message from "../Helpers/Message";
+import SearchExisting from "./SearchExisting";
 
 
 
@@ -150,14 +151,16 @@ const priceChangeHandler=(e)=>{
 }
   return(
     <Fragment>
+
       {showLoading && <Loader/>}
       
 
     
       {showUpdateSuccess && <Message message="Order was updated successfully." style={{color : "black"}}/>}
     {error && <Message message={error} style={{color : "red"}}/>}
-     {showForm && <form className={styles.newOrder} onSubmit={addOrderHandler}>
-      {/* {showUpdateSuccess && <h1 style={{fontSize : "1.5rem" , textAlign : "center"}} >Order was updated successfully.</h1>} */}
+      { showForm && !updateMode && <SearchExisting/>}
+     {showForm && <form className={`${styles.newOrder}`} onSubmit={addOrderHandler}>
+      
     
     <label htmlFor="name">Name:</label>
     <input id="name" type="text" value={name} onChange={nameChangeHandler}/>

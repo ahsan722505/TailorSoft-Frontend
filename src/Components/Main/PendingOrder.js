@@ -37,7 +37,32 @@ const PendingOrder=(props)=>{
         }
     }
     const  completeHandler=()=>{
-            console.log("completing..");
+        setWarning(state=>{ return {showWarning : !state.showWarning , message : null, proceedHandler : null}})
+        props.toggleLoader();
+        let clientError=true;
+        fetch(`${process.env.REACT_APP_HOST}/api/completeOrder`,{
+            method : "PATCH",
+            headers: { "Content-type": "application/json" },
+            body : JSON.stringify({orderId : props.order._id})
+        }).then(res=>{
+            clientError=false;
+            props.toggleLoader();
+            if(res.status === 500 || !res.ok) throw new Error("There was an error");
+            
+            
+            
+            dispatch(uiActions.toggleMeta("The order is completed."));
+            dispatch(ordersActions.deleteOrder(props.order._id))
+            
+        }).catch(err=>{
+            if(clientError) props.toggleLoader()
+            
+
+            
+            
+            dispatch(uiActions.toggleMeta("There was an error please try  again."));
+        })
+
     }
     
     const deleteHandler=()=>{
