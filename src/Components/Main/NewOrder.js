@@ -149,6 +149,11 @@ const priceChangeHandler=(e)=>{
   if(showUpdateSuccess) setUpdateSuccess(false);
   if(error) setError(false);
 }
+const useHandler=(data)=>{
+  setName(data.name);
+  setEmail(data.email);
+  setMeasurements(data.measurements);
+}
   return(
     <Fragment>
 
@@ -158,7 +163,7 @@ const priceChangeHandler=(e)=>{
     
       {showUpdateSuccess && <Message message="Order was updated successfully." style={{color : "black"}}/>}
     {error && <Message message={error} style={{color : "red"}}/>}
-      { showForm && !updateMode && <SearchExisting/>}
+      { showForm && !updateMode && <SearchExisting useHandler={useHandler}/>}
      {showForm && <form className={`${styles.newOrder}`} onSubmit={addOrderHandler}>
       
     

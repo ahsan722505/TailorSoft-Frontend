@@ -17,10 +17,9 @@
         margin: 0;
         max-height: 14rem;
         overflow-y: auto;
-    /* height: 200px; */
+        margin-top: 1rem;
     overflow-x: hidden;
-    /* max-height: 70vh; */
-        /* border: 2px solid red; */
+    
 }
 .mb_0{
     margin-bottom: 0;
@@ -32,6 +31,12 @@
 }
 .searchCont p,input{
     width: 100%;
+}
+.searchCont input{
+  margin-bottom: 0;
+}
+.searchCont hr{
+  margin-top: .3rem;
 }
 
 .clientsCont::-webkit-scrollbar {
