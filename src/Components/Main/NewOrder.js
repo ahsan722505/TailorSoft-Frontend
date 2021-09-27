@@ -29,6 +29,7 @@ const NewOrder = (props) => {
   const [showForm,setForm]=useState(true);
   
   const [showUpdateSuccess,setUpdateSuccess]=useState(false);
+  const [id,setId]=useState(null);
   
   
   const addOrderHandler=(event)=>{
@@ -56,7 +57,7 @@ const NewOrder = (props) => {
     if(updateMode){
       endPoint=`${process.env.REACT_APP_HOST}/api/updateOrder`
     }else{
-      endPoint=`${process.env.REACT_APP_HOST}/api/postOrder`
+      endPoint=`${process.env.REACT_APP_HOST}/api/postOrder?existing=${id ? true : false}`
     }
     let method;
     if(updateMode){
@@ -74,7 +75,7 @@ const NewOrder = (props) => {
               price : price,
               returnDate : date,
               cloth : cloth,
-              clientId : updateMode ? props.order.clientId._id : null,
+              clientId : updateMode ? props.order.clientId._id : id,
               orderId : updateMode ? props.order._id : null
             })}).then((res)=>{
                 if(res.status === 500 || !res.ok){
@@ -101,6 +102,7 @@ const NewOrder = (props) => {
                 setEmail("")
                 setMeasurements("")
                 setCloth("")
+                setId(null);
                 // setConfirmation(true)
                 
               }
@@ -153,6 +155,7 @@ const useHandler=(data)=>{
   setName(data.name);
   setEmail(data.email);
   setMeasurements(data.measurements);
+  setId(data._id);
 }
   return(
     <Fragment>
