@@ -6,6 +6,7 @@ const uiSlice = createSlice({
     showPendingOrders: true,
     showNewOrder: false,
     showSearchClients: false,
+    showMails : false,
     showSettings: false,
     firstRender : true,
     meta : {
@@ -24,24 +25,35 @@ const uiSlice = createSlice({
       state.showNewOrder = false;
       state.showSearchClients = false;
       state.showSettings = false;
+      state.showMails = false;
     },
     showNewOrderHandler(state) {
       state.showPendingOrders = false;
       state.showNewOrder = true;
       state.showSearchClients = false;
       state.showSettings = false;
+      state.showMails = false;
     },
     showSearchClientsHandler(state) {
       state.showPendingOrders = false;
       state.showNewOrder = false;
       state.showSearchClients = true;
       state.showSettings = false;
+      state.showMails = false;
     },
     showSettingsHandler(state) {
       state.showPendingOrders = false;
       state.showNewOrder = false;
       state.showSearchClients = false;
       state.showSettings = true;
+      state.showMails = false;
+    },
+    showMailsHandler(state) {
+      state.showPendingOrders = false;
+      state.showNewOrder = false;
+      state.showSearchClients = false;
+      state.showSettings = false;
+      state.showMails = true;
     },
     toggleFirstRender(state){
       state.firstRender=!state.firstRender

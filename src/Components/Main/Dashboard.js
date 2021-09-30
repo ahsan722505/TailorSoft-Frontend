@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const showDash = useSelector((state) => state.ui.showDash);
-  const { showPendingOrders, showNewOrder, showSearchClients, showSettings } =
+  const { showPendingOrders, showNewOrder, showSearchClients, showSettings,showMails } =
     useSelector((state) => state.ui);
   return (
     <ul
@@ -35,9 +35,13 @@ const Dashboard = () => {
       >
         <i class="fas fa-cart-plus"></i> New Order
       </li>
-      {/* <li>
+      <li className={showMails ? styles.selected : ""}
+        onClick={() => {
+          dispatch(uiActions.showMailsHandler());
+          dispatch(uiActions.toggleDashHandler());
+        }}>
         <i class="fas fa-envelope"></i> Email Client
-      </li> */}
+      </li>
       <li
         className={showSearchClients ? styles.selected : ""}
         onClick={() => {

@@ -42,7 +42,7 @@ const SearchExisting=(props)=>{
     }
 
     return(
-        <form className={`${styles.searchCont} ${(showResults || showLoading) ? styles.results : ""}`} onSubmit={submitHandler}>
+        <form className={`${styles.searchCont} ${(showResults || showLoading) ? styles.results : ""}`} onSubmit={submitHandler} style={{...props.style}}>
                 <input type="text" placeholder="search by name" ref={inputEl} className={`${showResults ? styles.mb_0 : ""}`} onChange={inputHandler}/>
                 { (showResults || showLoading) && <hr />}
                 { showResults && clients.length !==0 && !error && <ul className={styles.clientsCont}>
