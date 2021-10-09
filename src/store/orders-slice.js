@@ -18,6 +18,9 @@ const ordersSlice=createSlice({
         deleteOrder(state,action){
             console.log(action.payload);
             state.orders=state.orders.filter(order=> order._id !== action.payload)
+        },
+        resetState(state){
+            state.orders=[];
         }
     }
 })

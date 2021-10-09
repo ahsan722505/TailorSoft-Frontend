@@ -39,7 +39,7 @@ const Mail=(props)=>{
             setSubject("");
             dispatch(uiActions.toggleMeta("The email was sent successfully"));
         }).catch(err=>{
-                if(showLoader) setLoader(false);
+                 setLoader(false);
                 dispatch(uiActions.toggleMeta(`${err.message}`));
         })
 

@@ -4,6 +4,7 @@ import { uiActions } from "../../store/ui-slice";
 import { useSelector } from "react-redux";
 const Header = () => {
   const showDash = useSelector((state) => state.ui.showDash);
+  const username=useSelector(state=>state.auth.username);
   const dispatch = useDispatch();
   const hamHandler = () => {
     dispatch(uiActions.toggleDashHandler());
@@ -18,7 +19,7 @@ const Header = () => {
       </div>
       <div className={styles.account}>
         <i class="fas fa-user"></i>
-        <p className={styles.accountHolder}>Ahsan</p>
+        <p className={styles.accountHolder}>{username}</p>
       </div>
     </header>
   );

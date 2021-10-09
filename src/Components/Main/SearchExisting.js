@@ -3,9 +3,11 @@ import Client from "./Client";
 import Loader from "../Helpers/Loader";
 import Message from "../Helpers/Message";
 import { useState,useRef } from "react";
+import { useSelector } from "react-redux";
 
-// const clients=[{name : "ahsan tahir" , email : "ahsan@gmail.com", measurements : "jhbfygfby"},{name : "jav" , email : "jav@gmail.com", measurements : "sfjnf"},{name : "jav" , email : "jav@gmail.com", measurements : "sfjnf"},{name : "jav" , email : "jav@gmail.com", measurements : "sfjnf"},{name : "jav" , email : "jav@gmail.com", measurements : "sfjnf"}]
+
 const SearchExisting=(props)=>{
+    const ownerId=useSelector(state=>state.auth.ownerId);
     const [showResults,setResults]=useState(false);
     const [showLoading,setLoading]=useState(false);
     const [error,setError]=useState(null);
@@ -16,7 +18,7 @@ const SearchExisting=(props)=>{
             setResults(false)
             if(inputEl.current.value.trim().length ===0) return;
             setLoading(true);
-            fetch(`${process.env.REACT_APP_HOST}/api/getClient?name=${inputEl.current.value.trim()}`).then((res)=>{
+            fetch(`${process.env.REACT_APP_HOST}/api/getClient?name=${inputEl.current.value.trim()}&ownerId=${ownerId}`).then((res)=>{
                 if(res.status === 500 || !res.ok) throw new Error("There was an error please try again.");
                 
                 return res.json();

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Fragment } from "react";
 import Loader from "../Helpers/Loader";
 
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 import Confirmation from "../Helpers/Confirmation";
 import { ordersActions } from "../../store/orders-slice";
@@ -16,6 +16,7 @@ import SearchExisting from "./SearchExisting";
 // require("dotenv").config();
 const NewOrder = (props) => {
   const updateMode= props.order ? true : false; 
+  const ownerId=useSelector(state=>state.auth.ownerId);
   const dispatch=useDispatch();
 
   const [error,setError]=useState(false);
@@ -76,7 +77,8 @@ const NewOrder = (props) => {
               returnDate : date,
               cloth : cloth,
               clientId : updateMode ? props.order.clientId._id : id,
-              orderId : updateMode ? props.order._id : null
+              orderId : updateMode ? props.order._id : null,
+              ownerId : ownerId,
             })}).then((res)=>{
                 if(res.status === 500 || !res.ok){
                     

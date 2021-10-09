@@ -10,7 +10,7 @@ import { uiActions } from "../../store/ui-slice";
 import Message from "../Helpers/Message";
 import Confirmation from "../Helpers/Confirmation";
 const PendingOrders=()=>{
-    console.log("rendering pending orders")
+    const ownerId=useSelector(state=>state.auth.ownerId);
     const firstRender=useSelector(state=>state.ui.firstRender)
     const [showOrders,setShowOrders]= useState(firstRender ? false : true)
     const [showLoader,setLoader]= useState( firstRender ? true : false)
@@ -35,7 +35,7 @@ const PendingOrders=()=>{
         
 
         
-        fetch(`${process.env.REACT_APP_HOST}/api/getPendOrders`).then((res)=>{
+        fetch(`${process.env.REACT_APP_HOST}/api/getPendOrders?ownerId=${ownerId}`).then((res)=>{
             
             
             if(res.status === 500 || !res.ok){

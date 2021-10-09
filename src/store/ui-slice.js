@@ -61,7 +61,16 @@ const uiSlice = createSlice({
     toggleMeta(state,action){
       state.meta.show=!state.meta.show;
       state.meta.message=action.payload;
-    }
+    },
+    resetState(state){
+      state.showDash= false;
+    state.showPendingOrders= true;
+    state.showNewOrder= false;
+    state.showSearchClients= false;
+    state.showMails = false;
+    state.showSettings= false;
+    state.firstRender = true;
+    },
     
   },
 });

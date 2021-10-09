@@ -105,10 +105,19 @@ const PendingOrder=(props)=>{
                 <p>Name : {props.order.clientId.name}</p>
                 <p>createdAt : {props.order.createdAt}</p>
                 <p>returnDate : {props.order.returnDate}</p>
-                <button onClick={toggleDetailHandler}>Details</button>
-                <button value="delete" onClick={toggleWarning}>Delete</button>
-                <button  onClick={toggleUpdateHandler}>Update</button>
-                <button value="complete" onClick={toggleWarning}>Complete</button>
+                <hr/>
+                <div className={styles.btnCont}>
+                    <div>
+                        <button onClick={toggleDetailHandler}>Details</button>
+                        <button value="delete" onClick={toggleWarning}>Delete</button>
+
+                    </div>
+                    <div>
+
+                        <button  onClick={toggleUpdateHandler}>Update</button>
+                        <button value="complete" onClick={toggleWarning}>Complete</button>
+                    </div>
+                </div>
         </div>
         {showDetails && <AhsanModal closeHandler={toggleDetailHandler}>{details}</AhsanModal>}
         {showUpdate && <AhsanModal closeHandler={toggleUpdateHandler}>

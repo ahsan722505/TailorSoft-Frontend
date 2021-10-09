@@ -1,0 +1,64 @@
+.settings{
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: .8rem;
+    width: 70%;
+    margin: 0 auto;
+
+}
+
+.btnCont{
+    border: 2px solid red;
+    width: 10%;
+}
+
+.changeCont p{
+    text-align: center;
+    font-weight: bold;
+}
+.changeCont input{
+    background-color: rgb(190, 190, 190);
+    width: 80%;
+    
+    
+}
+.logoutCont{
+    border: 2px solid teal;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    padding: .8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.logoutCont button{
+    padding: .5rem 1rem;
+    border-radius: .8rem;
+    border: none;
+    background-color: teal;
+    color: white;
+    cursor: pointer;
+}
+.changeCont{
+    border: 2px solid teal;
+    padding: .3rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.changeCont button{
+    padding: .5rem 1rem;
+    border-radius: .8rem;
+    border: none;
+    background-color: teal;
+    color: white;
+    cursor: pointer;
+}
+@media (max-width : 500px) {
+    .settings{
+        width: 90%;
+    }
+}
