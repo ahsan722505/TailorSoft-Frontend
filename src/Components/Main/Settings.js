@@ -22,6 +22,7 @@ const Settings=()=>{
     const [warning,setWarning]=useState(false);
     const history=useHistory();
     const logoutHandler=()=>{
+        
         localStorage.removeItem("Authorization");
         dispatch(authActions.resetState())
         dispatch(uiActions.resetState());
@@ -35,6 +36,10 @@ const Settings=()=>{
     }
     const submitHandler=(e)=>{
         e.preventDefault();
+        if(ownerId == process.env.REACT_APP_DEMO){
+            dispatch(uiActions.toggleMeta("As a demo user, You don't have rights to change the password."));
+            return;
+        }
         setErr(null)
         if(currentPass.trim().length === 0 || newPass.trim().length === 0 || confirmNewPass.trim().length === 0){
             setErr("Fields should not be empty");

@@ -10,12 +10,19 @@
     top: 0;
     left: 0;
 }
-.header li:nth-child(2),li:nth-child(3){
+.login,.signup{
     font-weight: bolder;
 }
 .header li{
     list-style: none;
     cursor: pointer;
+}
+.linkCont{
+    display: flex;
+    
+}
+.linkCont *{
+    margin: 0 .5rem;
 }
 .header li a{
     text-decoration: none;

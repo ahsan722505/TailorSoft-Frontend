@@ -91,8 +91,11 @@ const LoginSignUp = (props) => {
     return (
         <Fragment>
 
+        <div className={styles.formCont}>
         <h1 style={{color : "teal" , textAlign : "center"}}>{signUpMode ? "SignUp" : "Login"}</h1>
         { loading && <Loader/>}
+
+        
         <form className={styles.form} onSubmit={submitHandler}>
             
             { !signUpMode && <input type="text" placeholder="username or email" ref={userOrEmailEl}/>}
@@ -103,8 +106,9 @@ const LoginSignUp = (props) => {
             { err && <h2 style={{color : "red" , fontSize : "1.2rem" , margin : 0 , padding : 0}}>{err}</h2>}
             <button type="submit">{signUpMode ? "SignUp" : "Login"}</button>
 
-        <p style={{color : "teal" , textAlign : "center"}}>Already Have an account? <Link to={`/${!signUpMode ? "signup" : "login"}`} >{!signUpMode ? "SignUp" : "Login"}</Link></p>
+        <p style={{color : "teal" , textAlign : "center"}}>{signUpMode ? "Don't have an account?" : "Already Have an account?"} <Link to={`/${!signUpMode ? "signup" : "login"}`} >{!signUpMode ? "SignUp" : "Login"}</Link></p>
         </form>
+        </div>
         </Fragment>
     )
 }
