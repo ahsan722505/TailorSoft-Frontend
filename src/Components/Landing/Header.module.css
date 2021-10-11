@@ -1,0 +1,23 @@
+.header{
+    display: flex;
+    width: 100vw;
+    background-color: teal;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    padding: .8rem 1.2rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+.header li:nth-child(2),li:nth-child(3){
+    font-weight: bolder;
+}
+.header li{
+    list-style: none;
+    cursor: pointer;
+}
+.header li a{
+    text-decoration: none;
+    color: white;
+}

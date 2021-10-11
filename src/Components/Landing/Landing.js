@@ -1,11 +1,16 @@
 import styles from "./Landing.module.css";
-import { Link } from "react-router-dom";
+
+import Header from "./Header";
+import LiveDemo from "./LiveDemo";
+import Features from "./Features";
+import { Fragment } from "react";
 const Landing=(props)=>{
     return(
-        <div>
-                <Link to="/login" >Login</Link>
-                <Link to="/signup">SignUp</Link>
-        </div>
+        <Fragment>
+            <Header/>
+            <LiveDemo/>
+            <Features/>
+        </Fragment>
     )
 }
 export default Landing;

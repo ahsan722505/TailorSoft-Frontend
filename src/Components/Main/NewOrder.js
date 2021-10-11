@@ -194,7 +194,7 @@ const useHandler=(data)=>{
   <input type="text" id="price" value={price} onChange={priceChangeHandler}/>
   <label htmlFor="cloth">Stitch Details:</label>
   <textarea id="cloth" rows="10" cols="50" value={cloth} onChange={clothChangeHandler}></textarea>
-  <div className={styles.btnCont}><button type="submit">{updateMode ? "Update" : "Add"}</button></div>
+  <div className={styles.btnCont}><button className={styles.btn} type="submit">{updateMode ? "Update" : "Add"}</button></div>
   </form>}
   </Fragment>
   );

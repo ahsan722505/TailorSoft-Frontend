@@ -1,0 +1,20 @@
+.features{
+    background-color: white;
+    border-radius: .8rem;
+    padding: 1rem;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+
+}
+.features hr{
+    background-color: teal;
+}
+.features h2{
+    color: teal;
+}
+@media (max-width : 500px) {
+    .features{
+        width: 80%;
+    }
+}

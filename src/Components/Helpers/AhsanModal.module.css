@@ -23,13 +23,14 @@
     
     
     
+    
 }
 .wrap{
     overflow-y: auto;
-    /* height: 200px; */
+    
     overflow-x: hidden;
     max-height: 70vh;
-    /* border: 2px solid red; */
+   
 }
 
 .closeCont{
@@ -40,22 +41,20 @@
     top: 0;
     left: 0;
     margin-bottom: .8rem;
-    /* border: 2px solid red; */
+    
 }
 .closeCont *{
     font-size: 1.5rem;
     cursor: pointer;
 }
-@media (max-width: 500px) {
+@media (max-width: 700px) {
     .modal{
-        width: 80%;
+        width: 85%;
+        
+        
     }
 }
-@media (max-width: 900px) {
-    .modal{
-        width: 70%;
-    }
-}
+
 
 .wrap::-webkit-scrollbar {
     width: 10px;
@@ -66,7 +65,7 @@
   
   
   .wrap::-webkit-scrollbar-track {
-    /* background: #f1f1f1;  */
+    
     background: rgb(190, 190, 190);
   
   }
@@ -76,7 +75,7 @@
   .wrap::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 1rem;
-    /* border-radius: 1rem; */
+    
   }
   
   

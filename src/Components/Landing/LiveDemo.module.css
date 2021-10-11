@@ -1,0 +1,29 @@
+.liveDemo{
+    background-color: white;
+    width: 50%;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: .8rem;
+}
+.info{
+    margin-bottom: .8rem;
+}
+.username,.pass{
+    background-color: teal;
+    padding: .8rem;
+    border-radius: .8rem;
+    color: white;
+    margin-bottom: .8rem;
+}
+.username p,.pass p{
+    margin: 0;
+    padding: 0;
+}
+.username p:first-child,.pass p:first-child{
+    font-weight: bolder;
+}
+@media (max-width : 500px) {
+    .liveDemo{
+        width: 80%;
+    }
+}

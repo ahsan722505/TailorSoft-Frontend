@@ -16,13 +16,20 @@ const Client=(props)=>{
         <Fragment>
 
         
-        <p onClick={showDetailsHandler} className={styles.client}>{props.client.name} <button value="button" type="button">use</button></p>
+        <p onClick={showDetailsHandler} className={styles.client}>{props.client.name} <button className={styles.btn} value="button" type="button">use</button></p>
         
         { showDetails && <AhsanModal closeHandler={()=> setDetails(false)}>
-                        <div>
-                            <p>name : {props.client.name}</p>
-                            <p>email : {props.client.email}</p>
-                            <p>measurements : {props.client.measurements}</p>
+                        <div className={styles.detailCont}>
+                            <p><span>name : </span>{props.client.name}</p>
+                            <p><span>email : </span>{props.client.email}</p>
+                            
+                            <div className={styles.measurements}>
+                                <p><span>measurements:</span></p>
+                                <div>
+                                    {props.client.measurements}
+                                </div>
+
+                            </div>
                         </div>
             </AhsanModal>}
         </Fragment>

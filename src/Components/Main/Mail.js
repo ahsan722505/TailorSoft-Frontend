@@ -69,7 +69,7 @@ const Mail=(props)=>{
             <input type="email" id="email" placeholder="to" onChange={changeEmailHandler} value={email}/>
             <input type="text" id="subject" placeholder="subject" value={subject} onChange={changeSubjectHandler}/>
             <textarea placeholder="compose email" rows="10" onChange={changeMailHandler} value={mail}/>
-            <button type="submit">Send</button>
+            <button className={styles.btn} type="submit">Send</button>
 
             
         </form>

@@ -42,7 +42,7 @@ const Dashboard = () => {
         }}>
         <i class="fas fa-envelope"></i> Email Client
       </li>
-      <li
+      {/* <li
         className={showSearchClients ? styles.selected : ""}
         onClick={() => {
           dispatch(uiActions.showSearchClientsHandler());
@@ -50,7 +50,7 @@ const Dashboard = () => {
         }}
       >
         <i class="fas fa-user"></i> Search Clients
-      </li>
+      </li> */}
       <li
         className={showSettings ? styles.selected : ""}
         onClick={() => {

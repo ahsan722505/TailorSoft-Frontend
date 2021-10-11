@@ -1,0 +1,28 @@
+.detailCont{
+    padding: 1rem;
+}
+.detailCont span{
+    font-weight: bolder;
+}
+.detailCont *{
+    background-color: teal;
+    color: white;
+    border-radius: .8rem;
+    padding: .3rem;
+}
+.measurements p{
+    
+    margin: 0;
+    padding: 0;
+}
+.measurements div{
+    word-wrap: break-word;
+}
+.cloth p{
+    
+    margin: 0;
+    padding: 0;
+}
+.cloth div{
+    word-wrap: break-word;
+}

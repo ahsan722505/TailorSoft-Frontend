@@ -42,8 +42,9 @@ function App() {
         setStartApp(true);
         dispatch(authActions.setAuthState({authenticated : false}));
       }else{
+        setStartApp(true);
 
-        dispatch(uiActions.toggleMeta("There was an error please try  again."));
+        dispatch(uiActions.toggleMeta("Kindly check your internet connection and try  again."));
       }
     })
   },[]);
