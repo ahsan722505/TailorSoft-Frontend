@@ -56,7 +56,10 @@ function App() {
   }
   return (
   <Fragment>
-    { loading && <Loader/>}
+    { loading &&<div className="loadContainer">
+      <Loader/>
+    </div>}
+      
     {startApp && <Switch>
 
     <Route path="/" exact>
